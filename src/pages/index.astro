@@ -1,0 +1,228 @@
+---
+import { getEntry } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const entry = await getEntry("site", "home");
+
+if (!entry) {
+  throw new Error("Missing src/content/site/home.md");
+}
+
+const content = entry.data;
+const baseUrl = import.meta.env.BASE_URL.replace(/\/$/, "");
+const assetPath = (src: string) => (src.startsWith("/") ? `${baseUrl}${src}` : src);
+const footerNav = content.nav;
+---
+
+<BaseLayout title={content.title} description={content.description}>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header" aria-label="Primary">
+    <a class="brand" href="#" aria-label="St. Charles Campus Ministry home">
+      <span class="brand-rule" aria-hidden="true"></span>
+      <span>{content.hero.brand}</span>
+    </a>
+
+    <nav class="nav-links" aria-label="Site sections">
+      {content.nav.map((item) => <a href={item.href}>{item.label}</a>)}
+    </nav>
+  </header>
+
+  <main id="main">
+    <section class="hero section-shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <h1 id="hero-title">{content.hero.heading}</h1>
+        <p>{content.hero.body}</p>
+        <div class="actions" aria-label="Primary actions">
+          <a class="button button-primary" href={content.hero.primaryCta.href}>
+            {content.hero.primaryCta.label}
+          </a>
+          <a class="button button-secondary" href={content.hero.secondaryCta.href}>
+            {content.hero.secondaryCta.label}
+          </a>
+        </div>
+      </div>
+
+      <figure class="hero-media media-frame">
+        <img src={assetPath(content.hero.image.src)} alt={content.hero.image.alt} loading="eager" />
+        <figcaption>{content.hero.image.caption}</figcaption>
+      </figure>
+    </section>
+
+    <section class="section-shell prayer-section" id={content.prayer.id} aria-labelledby="prayer-title">
+      <div class="section-intro">
+        <h2 id="prayer-title">{content.prayer.heading}</h2>
+        <p>{content.prayer.body}</p>
+      </div>
+
+      <div class="prayer-grid">
+        <div class="schedule-panel" aria-label="Weekly rhythm">
+          {content.prayer.schedule.map((item) => (
+            <article class="schedule-row">
+              <div>
+                <h3>{item.title}</h3>
+                <p>{item.detail}</p>
+              </div>
+              <span>{item.meta}</span>
+            </article>
+          ))}
+          <p class="schedule-note">{content.prayer.note}</p>
+        </div>
+
+        <figure class="media-frame side-media">
+          <img src={assetPath(content.prayer.image.src)} alt={content.prayer.image.alt} loading="eager" />
+          <figcaption>{content.prayer.image.caption}</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="retreats-section" id={content.retreats.id} aria-labelledby="retreats-title">
+      <div class="section-shell retreats-shell">
+        <div class="section-intro wide">
+          <h2 id="retreats-title">{content.retreats.heading}</h2>
+          <p>{content.retreats.body}</p>
+        </div>
+
+        <div class="formation-grid">
+          <article class="formation-block">
+            <span class="rule" aria-hidden="true"></span>
+            <h3>{content.retreats.retreatTitle}</h3>
+            <p>{content.retreats.retreatBody}</p>
+          </article>
+
+          <figure class="media-frame service-media">
+            <img src={assetPath(content.retreats.image.src)} alt={content.retreats.image.alt} loading="eager" />
+            <figcaption>{content.retreats.image.caption}</figcaption>
+          </figure>
+
+          <article class="formation-block service-block" id="service">
+            <span class="rule" aria-hidden="true"></span>
+            <h3>{content.retreats.serviceTitle}</h3>
+            <p>{content.retreats.serviceBody}</p>
+            <dl class="service-facts">
+              {content.retreats.serviceFacts.map((fact) => (
+                <div>
+                  <dt>{fact.label}</dt>
+                  <dd>{fact.detail}</dd>
+                </div>
+              ))}
+            </dl>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="chapel-section section-shell" id={content.chapel.id} aria-labelledby="chapel-title">
+      <div class="chapel-copy">
+        <h2 id="chapel-title">{content.chapel.heading}</h2>
+        <p>{content.chapel.body}</p>
+      </div>
+
+      <div class="chapel-gallery" aria-label="Official St. Charles chapel images">
+        {content.chapel.images.map((image, index) => (
+          <figure class:list={["media-frame", "chapel-media", index === 0 && "featured"]}>
+            <img src={assetPath(image.src)} alt={image.alt} loading="eager" />
+            <figcaption>{image.caption}</figcaption>
+          </figure>
+        ))}
+      </div>
+
+      <div class="virtue-strip" aria-label="Campus ministry formation themes">
+        {content.chapel.highlights.map((item) => (
+          <article>
+            <h3>{item.title}</h3>
+            <p>{item.body}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="campus-section" id={content.campus.id} aria-labelledby="campus-title">
+      <div class="section-shell campus-shell">
+        <div class="campus-copy">
+          <span>{content.campus.eyebrow}</span>
+          <h2 id="campus-title">{content.campus.heading}</h2>
+          <p>{content.campus.body}</p>
+        </div>
+
+        <div class="campus-media-grid" aria-label="Official St. Charles campus images">
+          {content.campus.images.map((image, index) => (
+            <figure class:list={["media-frame", "campus-media", index === 1 && "tall"]}>
+              <img src={assetPath(image.src)} alt={image.alt} loading="eager" />
+              <figcaption>{image.caption}</figcaption>
+            </figure>
+          ))}
+        </div>
+
+        <div class="campus-moments" aria-label="Campus ministry moments">
+          {content.campus.moments.map((moment) => (
+            <article>
+              <h3>{moment.title}</h3>
+              <p>{moment.body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="resources-section" id={content.resources.id} aria-labelledby="resources-title">
+      <div class="section-shell resources-shell">
+        <div class="resources-copy">
+          <h2 id="resources-title">{content.resources.heading}</h2>
+          <p>{content.resources.body}</p>
+        </div>
+
+        <div class="resources-grid">
+          <figure class="media-frame resources-media">
+            <img src={assetPath(content.resources.image.src)} alt={content.resources.image.alt} loading="eager" />
+            <figcaption>{content.resources.image.caption}</figcaption>
+          </figure>
+
+          <div class="resource-list">
+            {content.resources.items.map((item) => (
+              <article class="resource-item">
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+                <a href={item.action.href}>{item.action.label}</a>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id={content.contact.id} aria-labelledby="contact-title">
+      <div class="section-shell contact-shell">
+        <div class="contact-copy">
+          <h2 id="contact-title">{content.contact.heading}</h2>
+          <p>{content.contact.body}</p>
+          <div class="actions">
+            <a class="button button-primary" href={content.contact.primaryCta.href}>
+              {content.contact.primaryCta.label}
+            </a>
+            <a class="button button-secondary dark" href={content.contact.secondaryCta.href}>
+              {content.contact.secondaryCta.label}
+            </a>
+          </div>
+        </div>
+
+        <address class="contact-card">
+          <strong>{content.contact.chaplainName}</strong>
+          <a href={content.contact.primaryCta.href}>{content.contact.chaplainEmail}</a>
+          <span>{content.contact.schoolName}</span>
+          <span>{content.contact.address}</span>
+        </address>
+      </div>
+
+      <footer class="footer">
+        <a class="footer-brand" href="#">
+          <span class="brand-rule light" aria-hidden="true"></span>
+          <span>{content.hero.brand}</span>
+        </a>
+        <nav aria-label="Footer sections">
+          {footerNav.map((item) => <a href={item.href}>{item.label}</a>)}
+        </nav>
+      </footer>
+    </section>
+  </main>
+</BaseLayout>

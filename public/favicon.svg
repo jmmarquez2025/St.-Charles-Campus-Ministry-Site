@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
+  <title>St. Charles Campus Ministry</title>
+  <rect width="64" height="64" rx="10" fill="#9E1B32"/>
+  <path d="M32 12v40M20 24h24" stroke="#fff" stroke-width="5" stroke-linecap="square"/>
+  <path d="M18 52h28" stroke="#B08A44" stroke-width="4" stroke-linecap="square"/>
+</svg>
