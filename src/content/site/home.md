@@ -5,6 +5,8 @@ sourceUrl: "https://www.stcharlesprep.org/admissions/student-life/campus-ministr
 nav:
   - label: "Prayer"
     href: "#prayer"
+  - label: "At a Glance"
+    href: "#glance"
   - label: "Retreats"
     href: "#retreats"
   - label: "Service"
@@ -17,8 +19,23 @@ nav:
     href: "#contact"
 hero:
   brand: "St. Charles Campus Ministry"
-  heading: "Mass, prayer, retreats, and service at St. Charles"
-  body: "A practical hub for students and families seeking the weekly rhythm of prayer, the next retreat, Christian service guidance, or a conversation with the chaplain."
+  heading: "Campus Ministry"
+  body: "Mass, prayer, retreats, and Christian service for students and families at St. Charles Preparatory School."
+  badge:
+    src: "/images/official/st-charles-100-red.png"
+    alt: "St. Charles Preparatory School 100 Years anniversary mark."
+    caption: "Official St. Charles anniversary mark"
+    source: "Official St. Charles homepage"
+  logo:
+    src: "/images/official/st-charles-logo-white.png"
+    alt: "St. Charles Preparatory School logo."
+    caption: "Official St. Charles logo"
+    source: "Official St. Charles homepage"
+  utilityLinks:
+    - label: "Login"
+      href: "https://stcharlesprep.myschoolapp.com/app"
+    - label: "Menu"
+      href: "#resources"
   primaryCta:
     label: "View weekly rhythm"
     href: "#prayer"
@@ -26,10 +43,35 @@ hero:
     label: "Contact chaplain"
     href: "#contact"
   image:
-    src: "/images/official/campus-ministry-banner.jpg"
-    alt: "St. Charles students praying during Mass in the school chapel."
-    caption: "Mass and prayer at St. Charles"
-    source: "Official St. Charles Campus Ministry page"
+    src: "/images/official/main-home-video-poster.jpg"
+    alt: "St. Charles students gathered on campus from the official homepage video poster."
+    caption: "St. Charles Preparatory School"
+    source: "Official St. Charles homepage video poster"
+glance:
+  id: "glance"
+  heading: "Campus Ministry at a Glance"
+  body: "A school week shaped by worship, sacramental life, retreats, and service."
+  image:
+    src: "/images/official/glance-background.jpg"
+    alt: "Official St. Charles campus image used behind the school at-a-glance section."
+    caption: "Official St. Charles at-a-glance background"
+    source: "Official St. Charles homepage"
+  stats:
+    - value: "Weekly"
+      label: "Mass and school prayer"
+    - value: "4"
+      label: "Grade-level retreat paths"
+    - value: "16"
+      label: "Freshman and sophomore service hours"
+    - value: "24"
+      label: "Junior project hours"
+    - value: "9-12"
+      label: "Grades served"
+    - value: "1"
+      label: "Chapel at the heart of campus"
+quote:
+  text: "Campus Ministry exists to help students encounter Christ in prayer, in the sacraments, in retreats, and in service to others."
+  attribution: "Campus Ministry summary"
 prayer:
   id: "prayer"
   heading: "A rhythm that forms"
@@ -152,6 +194,53 @@ resources:
       action:
         label: "See rhythm"
         href: "#prayer"
+happening:
+  heading: "What's Happening in Campus Ministry"
+  body: "Use this space for current reminders while the school calendar and announcements remain the source of record."
+  items:
+    - date: "Weekly"
+      title: "Mass and prayer"
+      body: "Check school announcements for weekly Mass, morning prayer, adoration, and confession opportunities."
+      href: "#prayer"
+    - date: "Retreats"
+      title: "Retreat preparation"
+      body: "Dates, permission details, packing notes, and spiritual preparation can live here as they are confirmed."
+      href: "#retreats"
+    - date: "Service"
+      title: "Christian Service"
+      body: "Freshman, sophomore, and junior service expectations remain visible for students and families."
+      href: "#service"
+discover:
+  heading: "Discover Campus Ministry"
+  items:
+    - title: "Prayer"
+      href: "#prayer"
+      image:
+        src: "/images/official/campus-ministry-banner.jpg"
+        alt: "Students praying during Mass in the St. Charles chapel."
+        caption: "Prayer"
+        source: "Official St. Charles Campus Ministry page"
+    - title: "Retreats"
+      href: "#retreats"
+      image:
+        src: "/images/official/faith-in-action.jpg"
+        alt: "Students praying from worship aids in chapel."
+        caption: "Retreats"
+        source: "Official St. Charles site"
+    - title: "Service"
+      href: "#service"
+      image:
+        src: "/images/official/campus-ministry-card.jpg"
+        alt: "Official Campus Ministry image from the student life page."
+        caption: "Service"
+        source: "Official St. Charles student life page"
+    - title: "Chapel"
+      href: "#chapel"
+      image:
+        src: "/images/official/chapel-blessing-1.jpg"
+        alt: "Chapel artwork at St. Charles."
+        caption: "Chapel"
+        source: "Official St. Charles news"
 contact:
   id: "contact"
   heading: "Come by, ask, pray."

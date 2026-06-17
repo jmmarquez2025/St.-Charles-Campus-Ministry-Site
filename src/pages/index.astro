@@ -17,41 +17,89 @@ const footerNav = content.nav;
 <BaseLayout title={content.title} description={content.description}>
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header" aria-label="Primary">
-    <a class="brand" href="#" aria-label="St. Charles Campus Ministry home">
-      <span class="brand-rule" aria-hidden="true"></span>
-      <span>{content.hero.brand}</span>
+  <header class="hero-header" aria-label="Primary">
+    <a class="utility-block utility-login" href={content.hero.utilityLinks[0].href}>
+      <span aria-hidden="true">◎</span>
+      <span>{content.hero.utilityLinks[0].label}</span>
     </a>
-
-    <nav class="nav-links" aria-label="Site sections">
-      {content.nav.map((item) => <a href={item.href}>{item.label}</a>)}
-    </nav>
+    <a class="utility-block utility-menu" href={content.hero.utilityLinks[1].href}>
+      <span aria-hidden="true">☰</span>
+      <span>{content.hero.utilityLinks[1].label}</span>
+    </a>
   </header>
 
   <main id="main">
-    <section class="hero section-shell" aria-labelledby="hero-title">
-      <div class="hero-copy">
+    <section class="hero" aria-labelledby="hero-title">
+      <img class="hero-bg" src={assetPath(content.hero.image.src)} alt={content.hero.image.alt} loading="eager" />
+      <div class="hero-scrim" aria-hidden="true"></div>
+      <div class="hero-angle top" aria-hidden="true"></div>
+      <div class="hero-angle bottom" aria-hidden="true"></div>
+
+      <div class="hero-center">
+        <img class="hero-badge" src={assetPath(content.hero.badge.src)} alt={content.hero.badge.alt} loading="eager" />
         <h1 id="hero-title">{content.hero.heading}</h1>
         <p>{content.hero.body}</p>
-        <div class="actions" aria-label="Primary actions">
+        <div class="actions hero-actions" aria-label="Primary actions">
           <a class="button button-primary" href={content.hero.primaryCta.href}>
             {content.hero.primaryCta.label}
           </a>
-          <a class="button button-secondary" href={content.hero.secondaryCta.href}>
+          <a class="button button-secondary inverse" href={content.hero.secondaryCta.href}>
             {content.hero.secondaryCta.label}
           </a>
         </div>
       </div>
+    </section>
 
-      <figure class="hero-media media-frame">
-        <img src={assetPath(content.hero.image.src)} alt={content.hero.image.alt} loading="eager" />
-        <figcaption>{content.hero.image.caption}</figcaption>
-      </figure>
+    <nav class="section-nav" aria-label="Site sections">
+      <a class="section-brand" href="#">
+        <span>{content.hero.brand}</span>
+      </a>
+      <div>
+        {content.nav.map((item) => <a href={item.href}>{item.label}</a>)}
+      </div>
+    </nav>
+
+    <section class="intro-section section-shell" aria-labelledby="intro-title">
+      <div class="watermark" aria-hidden="true">SC</div>
+      <div class="section-kicker">We are St. Charles</div>
+      <div class="intro-grid">
+        <h2 id="intro-title">Formation close to ordinary school life</h2>
+        <p>
+          Campus Ministry gives students steady access to the Church's prayer, sacramental life,
+          retreats, and Christian service. This page keeps the most practical next steps close for
+          students and families.
+        </p>
+      </div>
+      <aside class="quote-box">
+        <blockquote>{content.quote.text}</blockquote>
+        <cite>{content.quote.attribution}</cite>
+      </aside>
+    </section>
+
+    <section class="glance-section" id={content.glance.id} aria-labelledby="glance-title">
+      <img src={assetPath(content.glance.image.src)} alt={content.glance.image.alt} loading="eager" />
+      <div class="glance-overlay" aria-hidden="true"></div>
+      <div class="section-shell glance-shell">
+        <div class="section-kicker light">St. Charles at a Glance</div>
+        <h2 id="glance-title">{content.glance.heading}</h2>
+        <p>{content.glance.body}</p>
+        <div class="stats-grid">
+          {content.glance.stats.map((stat) => (
+            <article>
+              <span>{stat.value}</span>
+              <p>{stat.label}</p>
+            </article>
+          ))}
+        </div>
+      </div>
     </section>
 
     <section class="section-shell prayer-section" id={content.prayer.id} aria-labelledby="prayer-title">
       <div class="section-intro">
-        <h2 id="prayer-title">{content.prayer.heading}</h2>
+        <div>
+          <div class="section-kicker">Prayer</div>
+          <h2 id="prayer-title">{content.prayer.heading}</h2>
+        </div>
         <p>{content.prayer.body}</p>
       </div>
 
@@ -69,7 +117,7 @@ const footerNav = content.nav;
           <p class="schedule-note">{content.prayer.note}</p>
         </div>
 
-        <figure class="media-frame side-media">
+        <figure class="media-frame side-media red-frame">
           <img src={assetPath(content.prayer.image.src)} alt={content.prayer.image.alt} loading="eager" />
           <figcaption>{content.prayer.image.caption}</figcaption>
         </figure>
@@ -79,13 +127,16 @@ const footerNav = content.nav;
     <section class="retreats-section" id={content.retreats.id} aria-labelledby="retreats-title">
       <div class="section-shell retreats-shell">
         <div class="section-intro wide">
-          <h2 id="retreats-title">{content.retreats.heading}</h2>
+          <div>
+            <div class="section-kicker">Retreats and Service</div>
+            <h2 id="retreats-title">{content.retreats.heading}</h2>
+          </div>
           <p>{content.retreats.body}</p>
         </div>
 
         <div class="formation-grid">
           <article class="formation-block">
-            <span class="rule" aria-hidden="true"></span>
+            <span class="corner-mark" aria-hidden="true"></span>
             <h3>{content.retreats.retreatTitle}</h3>
             <p>{content.retreats.retreatBody}</p>
           </article>
@@ -96,7 +147,7 @@ const footerNav = content.nav;
           </figure>
 
           <article class="formation-block service-block" id="service">
-            <span class="rule" aria-hidden="true"></span>
+            <span class="corner-mark" aria-hidden="true"></span>
             <h3>{content.retreats.serviceTitle}</h3>
             <p>{content.retreats.serviceBody}</p>
             <dl class="service-facts">
@@ -114,7 +165,10 @@ const footerNav = content.nav;
 
     <section class="chapel-section section-shell" id={content.chapel.id} aria-labelledby="chapel-title">
       <div class="chapel-copy">
-        <h2 id="chapel-title">{content.chapel.heading}</h2>
+        <div>
+          <div class="section-kicker">Sacred Space</div>
+          <h2 id="chapel-title">{content.chapel.heading}</h2>
+        </div>
         <p>{content.chapel.body}</p>
       </div>
 
@@ -165,28 +219,64 @@ const footerNav = content.nav;
       </div>
     </section>
 
-    <section class="resources-section" id={content.resources.id} aria-labelledby="resources-title">
-      <div class="section-shell resources-shell">
-        <div class="resources-copy">
-          <h2 id="resources-title">{content.resources.heading}</h2>
-          <p>{content.resources.body}</p>
+    <section class="happening-section section-shell" id={content.resources.id} aria-labelledby="happening-title">
+      <div class="happening-grid">
+        <div class="happening-card">
+          <div class="section-kicker light">Stories and Upcoming Events</div>
+          <h2 id="happening-title">{content.happening.heading}</h2>
+          <p>{content.happening.body}</p>
         </div>
-
-        <div class="resources-grid">
-          <figure class="media-frame resources-media">
-            <img src={assetPath(content.resources.image.src)} alt={content.resources.image.alt} loading="eager" />
-            <figcaption>{content.resources.image.caption}</figcaption>
-          </figure>
-
-          <div class="resource-list">
-            {content.resources.items.map((item) => (
-              <article class="resource-item">
+        <div class="event-list" aria-label="Campus ministry reminders">
+          {content.happening.items.map((item) => (
+            <a class="event-row" href={item.href}>
+              <span>{item.date}</span>
+              <div>
                 <h3>{item.title}</h3>
                 <p>{item.body}</p>
-                <a href={item.action.href}>{item.action.label}</a>
-              </article>
-            ))}
-          </div>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="resources-section section-shell" aria-labelledby="resources-title">
+      <div class="resources-copy">
+        <div>
+          <div class="section-kicker">Resources</div>
+          <h2 id="resources-title">{content.resources.heading}</h2>
+        </div>
+        <p>{content.resources.body}</p>
+      </div>
+
+      <div class="resources-grid">
+        <figure class="media-frame resources-media red-frame">
+          <img src={assetPath(content.resources.image.src)} alt={content.resources.image.alt} loading="eager" />
+          <figcaption>{content.resources.image.caption}</figcaption>
+        </figure>
+
+        <div class="resource-list">
+          {content.resources.items.map((item) => (
+            <article class="resource-item">
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
+              <a href={item.action.href}>{item.action.label}</a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section class="discover-section" aria-labelledby="discover-title">
+      <div class="section-shell">
+        <h2 id="discover-title">{content.discover.heading}</h2>
+        <div class="discover-grid">
+          {content.discover.items.map((item) => (
+            <a href={item.href} class="discover-tile">
+              <img src={assetPath(item.image.src)} alt={item.image.alt} loading="eager" />
+              <span>{item.title}</span>
+            </a>
+          ))}
         </div>
       </div>
     </section>
@@ -216,8 +306,7 @@ const footerNav = content.nav;
 
       <footer class="footer">
         <a class="footer-brand" href="#">
-          <span class="brand-rule light" aria-hidden="true"></span>
-          <span>{content.hero.brand}</span>
+          <img src={assetPath(content.hero.logo.src)} alt={content.hero.logo.alt} loading="eager" />
         </a>
         <nav aria-label="Footer sections">
           {footerNav.map((item) => <a href={item.href}>{item.label}</a>)}
